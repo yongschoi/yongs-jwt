@@ -14,7 +14,7 @@ import yongs.temp.vo.User;
 @Service
 public class JwtTokenProviderService {
 	private final String secretKey = "ThisIsMySecretKey";	
-	private long accessTokenValidTime  = 1000L * 60 * 60; // 1시간 토큰 유효
+	private long accessTokenValidTime  = 1000L * 60 * 60 * 2; // 2시간 토큰 유효
 	private long refreshTokenValidTime = 1000L * 60 * 60 * 24; // 24시간 토큰 유효
 
 	// private long accessTokenValidTime  = 1000L * 20; // 20초 토큰 유효

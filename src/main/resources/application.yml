@@ -3,7 +3,7 @@ spring:
     active: window-dev
 ---
 server:
-  port: 7071
+  port: 8083
 
 logging:
   level:
@@ -36,3 +36,40 @@ eureka:
     enabled: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+
+---
+server:
+  port: 8083
+
+logging:
+  level:
+    yongs:
+      temp: INFO
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF
+      
+spring:
+  profiles: container
+  application:
+    name: yongs-jwt
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    baseUrl: http://zipkin:9411/
+  data:
+    mongodb:
+      uri: mongodb://flex-mongo:27017/flex
+
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: eureka
+    instanceId: ${spring.application.name}:${random.value}
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+      
